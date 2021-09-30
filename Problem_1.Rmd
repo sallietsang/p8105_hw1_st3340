@@ -1,0 +1,46 @@
+---
+title: "homework 1 p8105"
+author: "Sze Pui Tsang"
+date: "9/29/2021"
+output: github_document
+---
+
+
+```{r load library}
+library(tidyverse)
+```
+
+
+```{r create df}
+df_plot = 
+  tibble(
+    sample_size = rnorm(10),
+    sample_pos = sample_size > 0, 
+    char_vector = c("s","z","e","p","u","i","t","s","a","n"),
+    fac_vector = factor(c("A","A","A","B","B","B","B","C","C","C"))
+  )
+```
+
+Take the mean of each variable
+
+```{r using pull}
+mean(pull(df_plot, sample_size))
+mean(pull(df_plot, sample_pos ))
+mean(pull(df_plot, char_vector))
+mean(pull(df_plot, fac_vector))
+```
+The results shows that some argument is not numeric or logical: returning NA
+
+The sample_size and sample_pos works as they are numeric whereas the char_vector 
+and fac_vector doesnt work as they are character and logical which cant be
+computed
+
+We need to convert variables from factor/character/logical to number by using 
+as.numeric
+
+```{r using as.numeric}
+as.numeric(pull(df_plot, sample_size))
+as.numeric(pull(df_plot, sample_pos))
+as.numeric(pull(df_plot, char_vector))
+as.numeric(pull(df_plot, fac_vector))
+```
