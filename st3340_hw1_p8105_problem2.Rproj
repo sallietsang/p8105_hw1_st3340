@@ -1,0 +1,43 @@
+---
+title: "homework 1 p8105"
+author: "Sze Pui Tsang"
+date: "9/29/2021"
+output: github_document
+---
+
+
+# Problem 2
+
+The following code chunk loads the dataset
+
+```{r import data}
+data("penguins", package = "palmerpenguins")
+```
+
+```{r a view on the data}
+#summary of the dataset penguins
+summary(penguins)
+head(penguins)
+#number of row AND Col
+nrow(penguins)
+ncol(penguins)
+#calculate the mean flipper_length_mm and exlude all the missing value
+mean(pull(penguins, flipper_length_mm), na.rm = TRUE)
+
+```
+There are 8 variables,ranging from species, island, bill length and depth in mm , flipper length in mm, body mass in g, sex and age.
+The dataset includes 344 rows and 8 cols.
+There are a total of 344 penguins, which can be divided into three species(152, 68, 124 belongs to Adelie, Chinstrap and Gentoo respectively),
+the population of penguins in island Biscoe, Dream and Gentoo are 168, 124 and 52 respectively. 
+The mean of the bill length and depth are 43.92 and 17.15mm respectively,
+whereas thier average flipper length is 200.9mm with a mean of 4202g body mass.
+Some data are missing within this dataset, the calculation are done by assuming the na.rm = TRUE 
+
+##Making a scatterplot 
+```{r plotting a scatterplot of penguins}
+ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species )) + geom_point()
+```
+
+```{r export_plot}
+ggsave("penguins_scatterplot.pdf")
+```
